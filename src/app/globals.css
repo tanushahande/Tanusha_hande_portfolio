@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #050816;
+  --color-foreground: #ffffff;
+  --color-primary: #00f5d4;
+  --color-secondary: #7b61ff;
+  --color-muted: #94a3b8;
+  --color-card: rgba(15, 23, 42, 0.6);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(123, 97, 255, 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(0, 245, 212, 0.08), transparent);
+  }
+
+  ::selection {
+    background: rgba(0, 245, 212, 0.3);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .glass-strong {
+    @apply border border-white/15 bg-white/[0.07] backdrop-blur-2xl;
+  }
+
+  .neon-glow {
+    box-shadow:
+      0 0 20px rgba(0, 245, 212, 0.3),
+      0 0 60px rgba(0, 245, 212, 0.1);
+  }
+
+  .neon-glow-purple {
+    box-shadow:
+      0 0 20px rgba(123, 97, 255, 0.4),
+      0 0 60px rgba(123, 97, 255, 0.15);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-white to-secondary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .section-padding {
+    @apply px-4 py-24 sm:px-6 lg:px-8 lg:py-32;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#050816, #050816) padding-box,
+      linear-gradient(135deg, #00f5d4, #7b61ff) border-box;
+    border: 2px solid transparent;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f5d4, #7b61ff);
+  border-radius: 3px;
+}
+
+/* Smooth scroll reveal performance */
+@media (max-width: 640px) {
+  .section-padding {
+    @apply py-16;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
