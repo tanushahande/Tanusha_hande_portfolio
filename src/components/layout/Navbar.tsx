@@ -10,6 +10,15 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const handleMobileNavClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    window.setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", href);
+    }, 300);
+  };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -76,7 +85,7 @@ export function Navbar() {
                   <a
                     href={link.href}
                     className="block text-lg text-white/80 transition-colors hover:text-primary"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={handleMobileNavClick(link.href)}
                   >
                     {link.label}
                   </a>
@@ -86,7 +95,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-5 py-2 text-sm font-medium text-primary"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleMobileNavClick("#contact")}
                 >
                   Let&apos;s Talk
                 </a>
