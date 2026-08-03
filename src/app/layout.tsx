@@ -91,13 +91,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <Script
-          id="adsbygoogle-init"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2071178332704588"
-          crossOrigin="anonymous"
-          strategy="beforeInteractive"
-        />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2071176332704588"
+     crossorigin="anonymous"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <a
